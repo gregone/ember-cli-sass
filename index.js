@@ -6,6 +6,7 @@ function SASSPlugin(options) {
   options = options || {};
   options.inputFile = options.inputFile || 'app.scss';
   options.outputFile = options.outputFile || 'app.css';
+  options.dest = options.dest || 'app.css';
   if (options.sourceMap) {
     options.sourceComments = 'map';
     options.sourceMap = true;
@@ -35,6 +36,7 @@ EmberCLISASS.prototype.included = function included(app) {
     options.sourceMap = true;
   }
   options.outputFile = options.outputFile || this.project.name() + '.css';
+  options.dest = options.dest || this.project.name() + '.css';
   app.registry.add('css', new SASSPlugin(options));
   // prevent conflict with broccoli-sass if it's installed
   if (app.registry.remove) app.registry.remove('css', 'broccoli-sass');
